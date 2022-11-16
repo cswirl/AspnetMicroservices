@@ -7,6 +7,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+var configuration = builder.Configuration;
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = configuration.GetValue<string>("CacheSettings:ConnectionString");
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
