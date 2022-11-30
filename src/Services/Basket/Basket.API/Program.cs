@@ -17,6 +17,7 @@ builder.Services.AddSwaggerGen();
 var configuration = builder.Configuration;
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.AddAutoMapper(typeof(Program));
 
 // Redis Configuration
 builder.Services.AddStackExchangeRedisCache(options =>
