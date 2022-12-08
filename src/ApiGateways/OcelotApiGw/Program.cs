@@ -17,7 +17,15 @@ builder.Services.AddOcelot();
 var app = builder.Build();
 
 // Middleware Pipeline
-app.MapGet("/", () => "Hello World!");
+app.UseRouting();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/", async context =>
+    {
+        await context.Response.WriteAsync("Hello World!");
+    });
+});
 
 await app.UseOcelot();
 
